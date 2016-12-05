@@ -3,6 +3,18 @@
 # this program is king-js build scripts
 #e-mail:
 # zuiwuchang@gmail.com
+
+#compatible win32 mingw ...
+if [[ $ClosureCompiler == "" ]]
+then
+	if [[ $CLOSURECOMPILER == "" ]]
+	then
+		echo '$ClosureCompiler not set'
+		exit 1
+	fi
+	ClosureCompiler=$CLOSURECOMPILER
+fi
+
 echo "***	clear	***"
 rm -rf ../lib/king-js/*
 
@@ -31,8 +43,9 @@ function Build(){
 	echo "***	build success	***"
 }
 
-AddSource "core"
-AddSource "core.nolog"
-AddSource "controller/Async"
+#AddSource "core"
+#AddSource "core.nolog"
+#AddSource "controller/Async"
+AddSource "strings/strings"
 
 Build

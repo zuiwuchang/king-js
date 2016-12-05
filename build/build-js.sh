@@ -4,6 +4,17 @@
 #e-mail:
 # zuiwuchang@gmail.com
 
+#compatible win32 mingw ...
+if [[ $ClosureCompiler == "" ]]
+then
+	if [[ $CLOSURECOMPILER == "" ]]
+	then
+		echo '$ClosureCompiler not set'
+		exit 1
+	fi
+	ClosureCompiler=$CLOSURECOMPILER
+fi
+
 
 
 function ShowHelp(){
