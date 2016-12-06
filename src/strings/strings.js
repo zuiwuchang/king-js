@@ -28,3 +28,30 @@ king.strings.FormatDate = king.strings.FormatDate || function(d,fmt){
 	}
 	return fmt;
 }
+
+//驗證 是否是 ipv4
+king.strings.IsIPv4 = king.strings.IsIPv4 || function(ip){
+	if(!ip){
+		return false;
+	}
+	if(typeof(ip) != "string"){
+		return false;
+	}
+
+	var isRange = function(str){
+		if(str.length == 2 && str[0] == "0"){
+			return false;
+		}else if(str.length == 3){
+			if(str[0] == "0"){
+				return false;
+			}
+			return parseInt(str) < 256;
+		}
+		return true;
+	};
+	if(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/.test(ip)){
+		var arrs = [RegExp.$1,RegExp.$2,RegExp.$3,RegExp.$4];
+		return isRange(arrs[0]) && isRange(arrs[1]) && isRange(arrs[2]) && isRange(arrs[3]);
+	}
+	return false;
+}
