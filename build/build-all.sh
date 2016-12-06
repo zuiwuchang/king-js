@@ -48,6 +48,7 @@ AddSource "core"
 AddSource "core.nolog"
 AddSource "controller/Async"
 AddSource "strings/strings"
+AddSource "cookie/cookie"
 AddSource "validators/Validator"
 
 Build

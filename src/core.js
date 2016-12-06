@@ -9,7 +9,7 @@
 	package	king
 	new		NewObject()
 */
-var king = king || {};
+var king = king || {isLog:true};
 //所有組件的 基類 提供了 基本方法
 king.NameObject = king.NameObject || "king.Object"
 king.NewObject = king.NewObject || function(){

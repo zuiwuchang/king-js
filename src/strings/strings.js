@@ -1,5 +1,9 @@
 /*
-	strings 提供了 常見的 字符串 處理 函數
+	king.strings 
+	包提供了 常見的 字符串 處理 函數
+	
+	package	king.strings
+	
 */
 king.strings = king.strings || {};
 
