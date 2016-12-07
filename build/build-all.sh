@@ -4,17 +4,6 @@
 #e-mail:
 # zuiwuchang@gmail.com
 
-#compatible win32 mingw ...
-if [[ $ClosureCompiler == "" ]]
-then
-	if [[ $CLOSURECOMPILER == "" ]]
-	then
-		echo '$ClosureCompiler not set'
-		exit 1
-	fi
-	ClosureCompiler=$CLOSURECOMPILER
-fi
-
 
 echo "***	clear	***"
 rm -rf ../lib/king-js/*
@@ -29,7 +18,7 @@ function AddSource(){
 }
 function BuildOne(){
 	echo "---	build $1	---"
-	java -jar $ClosureCompiler --js ../src/$1.js --js_output_file ../lib/king-js/$1.min.js
+	java -jar $CLOSURE_COMPILER --js ../src/$1.js --js_output_file ../lib/king-js/$1.min.js
 
 	if test $? -ne 0; then
 		exit $?

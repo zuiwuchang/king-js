@@ -13,9 +13,9 @@
 build/build-all.sh 是一個 自動 編譯 的 bash 腳本 直接運行即可
 
 build-all.sh 使用 google 提供的 closure-compiler.jar 編譯js 故需要 os自行安裝 好 java環境
-(並且 需要將 closure-compiler.jar 設置到 環境變量 $ClosureCompiler
+(並且 需要將 closure-compiler.jar 設置到 環境變量 $CLOSURE_COMPILER
 
-king@king-XXX-XXX ~ $ echo $ClosureCompiler
+king@king-XXX-XXX ~ $ echo $CLOSURE_COMPILER
 
 /opt/java/jar/closure-compiler-v20161201.jar
 )

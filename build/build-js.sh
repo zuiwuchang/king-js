@@ -4,18 +4,6 @@
 #e-mail:
 # zuiwuchang@gmail.com
 
-#compatible win32 mingw ...
-if [[ $ClosureCompiler == "" ]]
-then
-	if [[ $CLOSURECOMPILER == "" ]]
-	then
-		echo '$ClosureCompiler not set'
-		exit 1
-	fi
-	ClosureCompiler=$CLOSURECOMPILER
-fi
-
-
 
 function ShowHelp(){
 	echo "help		: show help"
@@ -94,7 +82,7 @@ function BuildFilter(){
 	name=${1:0:len}
 
 	echo "---	build $name.js	---"
-	java -jar $ClosureCompiler --js $name.js --js_output_file $name.min.js 
+	java -jar $CLOSURE_COMPILER --js $name.js --js_output_file $name.min.js 
 }
 
 ok=0
