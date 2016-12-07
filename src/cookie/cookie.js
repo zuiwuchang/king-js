@@ -28,9 +28,20 @@ king.cookie = king.cookie || {
 		}
 		return null;
 	},
-	Erase:function(name){
+	Erase:function(name,path){
 		var date = new Date(); 
 		date.setTime(date.getTime() -1);
-		document.cookie = name + "=time out;expires=" + date.toGMTString();
+
+		//name
+		var str = name + "=time out";
+
+		//path
+		if(path){
+			str += ";path=" + path;
+		}
+
+		//time
+		str += ";expires=" + date.toGMTString();
+		document.cookie = str;
 	},
 };
