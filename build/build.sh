@@ -6,9 +6,6 @@
 
 
 
-echo "***	clear	***"
-rm -rf ../lib/king-js/*
-
 echo "***	build begin	***"
 declare -i pos
 declare -a srcs
