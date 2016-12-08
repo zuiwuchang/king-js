@@ -36,5 +36,6 @@ AddSource "controller/Async"
 AddSource "strings/strings"
 AddSource "cookie/cookie"
 AddSource "validators/Validator"
+AddSource "browser/browser"
 
 Build

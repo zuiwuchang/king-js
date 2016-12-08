@@ -31,9 +31,6 @@ function Build(){
 	echo "***	build success	***"
 }
 
-#AddSource "core"
-#AddSource "core.nolog"
-#AddSource "controller/Async"
-AddSource "strings/strings"
+AddSource "browser/browser"
 
 Build
