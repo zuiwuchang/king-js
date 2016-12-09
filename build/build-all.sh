@@ -33,6 +33,7 @@ function Build(){
 AddSource "core"
 AddSource "core.nolog"
 AddSource "controller/Async"
+AddSource "container/List"
 AddSource "strings/strings"
 AddSource "cookie/cookie"
 AddSource "validators/Validator"

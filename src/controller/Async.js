@@ -9,7 +9,7 @@
 
 */
 king.controller = king.controller || {};
-king.controller.NameAsync = king.controller.NameAsync || "king.controller.Async"
+king.controller.NameAsync = king.controller.NameAsync || "king.controller.Async";
 king.controller.NewAsync = king.controller.NewAsync || function(){
 	/***	設置包名	***/
 	var pk = king.controller;
