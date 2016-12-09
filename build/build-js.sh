@@ -6,9 +6,11 @@
 
 
 function ShowHelp(){
-	echo "help		: show help"
-	echo "clean rootpath	: rm all *.min.js"
-	echo "build rootpath	: build *.js to *.min.js this is default"
+	echo "help				: show help"
+	echo "clean		rootpath	: rm all *.min.js"
+	echo "build		rootpath	: build *.js to *.min.js"
+	echo "build-one	jspath		: build a js file to *.min.js"
+	echo "build-js	src dist	: build src to dist"
 }
 
 function CleanFilter(){
@@ -66,12 +68,53 @@ function Build(){
 
 	echo "***	build success	***"
 }
+function BuildOne(){
+	if [[ $1 == "" ]]
+	then
+		ShowHelp
+		exit 1
+	fi
+
+	if [[ $1 != *.js ]]
+	then
+		echo "jspath must is *.js"
+		exit 1
+	fi
+
+	echo "***	build-one begin	***"
+	BuildFilter $1
+	ok=$?
+	if [[ $ok != 0 ]];then
+		exit $ok
+	fi
+	echo "***	build-one success	***"
+}
+function BuildJs(){
+	if [[ $1 == "" ]]
+	then
+		echo "need srcfile"
+		exit 1
+	elif [[ $2 == "" ]]
+	then
+		echo "need distfile"
+		exit 1
+	fi
+
+	echo "***	build-js begin	***"
+	echo "---	build $1	---"
+	java -jar $CLOSURE_COMPILER --js $1 --js_output_file $2
+
+	ok=$?
+	if [[ $ok != 0 ]];then
+		exit $ok
+	fi
+	echo "***	build-js success	***"
+}
 function BuildFilter(){
 	if [[ $1 == *.min.js ]]
 	then
 		return
-	fi
-	if [[ $1 == *.test.js ]]
+	elif [[ $1 == *.test.js ]]
 	then
 		return
 	fi
@@ -88,6 +131,12 @@ function BuildFilter(){
 ok=0
 if [[ $1 == "build" ]];then 
 	Build $2
+	ok=$?
+elif [[ $1 == "build-one" ]];then
+	BuildOne $2
+	ok=$?
+elif [[ $1 == "build-js" ]];then
+	BuildJs $2 $3
 	ok=$?
 elif [[ $1 == "clean" ]];then
 	Clean $2
