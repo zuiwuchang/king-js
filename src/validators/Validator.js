@@ -38,7 +38,7 @@ king.validators.NewValidator = king.validators.NewValidator || function(){
 		//將 驗證對象 綁定到 驗證器
 		Bind:function(validator){
 			if(!this.CheckValidator(validator)){
-				this.log("Bind","params is not ValidatorObject");
+				this.error("Bind","params is not ValidatorObject");
 				return false;
 			}
 			_validators[validator.Id] = validator;

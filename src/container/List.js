@@ -34,10 +34,9 @@ king.container.NewList = king.container.NewList || function(){
 			Next:next,
 			Value:val,
 		}
-	};	
-
+	};
 	/***	派生子類	***/
-	newObj.Extend(pk.NameAsync,
+	newObj.Extend(pk.NameList,
 	{
 		//返回 鍊錶 大小
 		Len:function(){
@@ -52,14 +51,14 @@ king.container.NewList = king.container.NewList || function(){
 			var _ctx = privateObj;
 
 			var node = _ctx.Back;
-			if(node == null){
-				node = newElement(null,null,v);
-				_ctx.Back = node;
-				_ctx.Front = node;
-			}else{
+			if(node){
 				var back = newElement(node,null,v);
 				node.Next = back;
 				_ctx.Back = back;
+			}else{
+				node = newElement(null,null,v);
+				_ctx.Back = node;
+				_ctx.Front = node;
 			}
 			++_ctx.Size;
 		},
@@ -68,14 +67,14 @@ king.container.NewList = king.container.NewList || function(){
 			var _ctx = privateObj;
 
 			var node = _ctx.Front;
-			if(node == null){
-				node = newElement(null,null,v);
-				_ctx.Back = node;
-				_ctx.Front = node;
-			}else{
+			if(node){
 				var front = newElement(null,node,v);
 				node.Prev = front;
 				_ctx.Front = front;
+			}else{
+				node = newElement(null,null,v);
+				_ctx.Back = node;
+				_ctx.Front = node;
 			}
 			++_ctx.Size;
 		},
@@ -85,7 +84,7 @@ king.container.NewList = king.container.NewList || function(){
 
 			var back = _ctx.Back;
 			//empty
-			if(back == null){
+			if(!back){
 				return;
 			}
 
@@ -109,7 +108,7 @@ king.container.NewList = king.container.NewList || function(){
 
 			var front = _ctx.Front;
 			//empty
-			if(front == null){
+			if(!front){
 				return;
 			}
 
@@ -138,7 +137,7 @@ king.container.NewList = king.container.NewList || function(){
 		},
 		//刪除 指定 元素
 		Remove:function(element){
-			if(element == null || element == undefined){
+			if(!element){
 				return;
 			}
 
@@ -148,16 +147,16 @@ king.container.NewList = king.container.NewList || function(){
 			var prev = element.Prev;
 			var next = element.Next;
 			
-			if(prev == null){
-				_ctx.Front = next;
-			}else{
+			if(prev){
 				prev.Next = next;
+			}else{
+				_ctx.Front = next;
 			}
 
-			if(next == null){
-				_ctx.Back = prev;
-			}else{
+			if(next){
 				next.Prev = prev;
+			}else{
+				_ctx.Back = prev;
 			}
 		},
 
@@ -171,7 +170,7 @@ king.container.NewList = king.container.NewList || function(){
 		},
 		//在指定元素後 添加元素
 		InsertAfter:function(val,element){
-			if(element == null || element == undefined){
+			if(!element){
 				this.PushBack(val);
 				return;
 			}
@@ -181,16 +180,16 @@ king.container.NewList = king.container.NewList || function(){
 			
 			var next = element.Next;
 			var new_element = newElement(element,next,val);
-			if(next == null){
-				_ctx.Back = new_element;
-			}else{
+			if(next){
 				next.Prev = new_element;
+			}else{
+				_ctx.Back = new_element;
 			}
 			element.Next = new_element;
 		},
 		//在指定元素前 添加元素
 		InsertBefore:function(val,element){
-			if(element == null || element == undefined){
+			if(!element){
 				this.PushFront(val);
 				return;
 			}
@@ -201,15 +200,20 @@ king.container.NewList = king.container.NewList || function(){
 			var prev = element.Prev;
 			var new_element = newElement(prev,element,val);
 			
-			if(prev == null){
-				_ctx.Front = new_element;
-			}else{
+			if(prev){
 				prev.Next = new_element;
+			}else{
+				_ctx.Front = new_element;
 			}
 			element.Prev = new_element;
 		},
 		//對所有 元素 進行回調(返回 true 停止 遍歷)
 		Do:function(call){
+			if(!call || typeof(call) != "function"){
+				this.error("Do","Do(call) \tcall must be a function(element)");
+				return;
+			};
+
 			for(var iter = privateObj.Front;iter!=null;iter=iter.Next){
 				if(call(iter)){
 					return;
@@ -218,6 +222,10 @@ king.container.NewList = king.container.NewList || function(){
 		},
 		//對所有 元素 逆向進行回調
 		DoReverse:function(call){
+			if(!call || typeof(call) != "function"){
+				this.error("DoReverse","DoReverse(call) \tcall must be a function(element)");
+				return;
+			};
 			for (var iter = privateObj.Back;iter!=null;iter=iter.Prev) {
 				if(call(iter)){
 					return;

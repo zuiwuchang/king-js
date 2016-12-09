@@ -104,5 +104,4 @@ QUnit.test( "List", function( assert ) {
 		++i;
 	});
 	assert.equal(i,6,"InsertAfter");
-
 });
