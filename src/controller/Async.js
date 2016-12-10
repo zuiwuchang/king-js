@@ -8,6 +8,10 @@
 	使用
 
 */
+(function(g){
+"use strict";
+var king = g.king;
+
 king.controller = king.controller || {};
 king.controller.NameAsync = king.controller.NameAsync || "king.controller.Async";
 king.controller.NewAsync = king.controller.NewAsync || function(){
@@ -137,3 +141,5 @@ king.controller.NewAsync = king.controller.NewAsync || function(){
 	);
 	return newObj;
 };
+
+})(this);

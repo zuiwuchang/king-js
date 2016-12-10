@@ -5,6 +5,10 @@
 	package	king.strings
 	
 */
+(function(g){
+"use strict";
+var king = g.king;
+
 king.strings = king.strings || {};
 
 //將日期 Date 轉化爲指定格式的 字符串
@@ -31,7 +35,7 @@ king.strings.FormatDate = king.strings.FormatDate || function(d,fmt){
 		}
 	}
 	return fmt;
-}
+};
 
 //驗證 是否是 ipv4
 king.strings.IsIPv4 = king.strings.IsIPv4 || function(ip){
@@ -58,4 +62,6 @@ king.strings.IsIPv4 = king.strings.IsIPv4 || function(ip){
 		return isRange(arrs[0]) && isRange(arrs[1]) && isRange(arrs[2]) && isRange(arrs[3]);
 	}
 	return false;
-}
+};
+
+})(this);

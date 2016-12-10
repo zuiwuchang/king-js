@@ -5,6 +5,9 @@
 	package	king.browser
 	
 */
+(function(g){
+"use strict";
+var king = g.king;
 king.browser = king.browser || {
 	//返回 瀏覽器 是否是 微軟的 IE 
 	IsIE: function(){
@@ -39,3 +42,5 @@ king.browser = king.browser || {
 		return false;
 	},
 };
+
+})(this);

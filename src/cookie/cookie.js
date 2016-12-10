@@ -5,6 +5,10 @@
 	package	king.cookie
 	
 */
+(function(g){
+"use strict";
+var king = g.king;
+
 king.cookie = king.cookie || {
 	Set:function(name,value,path,second){
 		var str = name + "="+ escape (value);
@@ -20,7 +24,7 @@ king.cookie = king.cookie || {
 	},
 	Get:function(name){
 		var array = document.cookie.split("; ");
-		for(index in array){
+		for(var index in array){
 			var key_value = array[index].split("=");
 			if(key_value[0]==name){
 				return unescape(key_value[1]);
@@ -45,3 +49,5 @@ king.cookie = king.cookie || {
 		document.cookie = str;
 	},
 };
+
+})(this);

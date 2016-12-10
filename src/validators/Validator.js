@@ -19,6 +19,10 @@
 	}
 */
 
+(function(g){
+"use strict";
+var king = g.king;
+
 king.validators = king.validators || {};
 king.validators.NameValidator = king.validators.NameValidator || "king.validators.Validator";
 //創建一個 驗證器
@@ -100,3 +104,5 @@ king.validators.NewValidator = king.validators.NewValidator || function(){
 	);
 	return newObj;
 };
+
+})(this);

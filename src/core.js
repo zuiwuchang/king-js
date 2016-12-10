@@ -9,7 +9,10 @@
 	package	king
 	new		NewObject()
 */
-var king = king || {isLog:true};
+(function(g){
+"use strict";
+g.king = g.king || {isLog:true};
+var king = g.king;
 //所有組件的 基類 提供了 基本方法
 king.NameObject = king.NameObject || "king.Object"
 king.NewObject = king.NewObject || function(){
@@ -60,3 +63,5 @@ king.NewObject = king.NewObject || function(){
 		},
 	};
 };
+
+})(this);

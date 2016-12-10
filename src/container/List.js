@@ -13,6 +13,11 @@
 		Value:val,
 	};
 */
+
+(function(g){
+"use strict";
+var king = g.king;
+
 king.container = king.container || {};
 king.container.NameList = king.container.NameList || "king.container.List";
 king.container.NewList = king.container.NewList || function(){
@@ -236,3 +241,5 @@ king.container.NewList = king.container.NewList || function(){
 	);
 	return newObj;
 };
+
+})(this);
