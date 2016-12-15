@@ -31,6 +31,6 @@ function Build(){
 	echo "***	build success	***"
 }
 
-AddSource "container/List"
+AddSource "strings/strings"
 
 Build

@@ -14,3 +14,55 @@ QUnit.test( "IsIPv4", function( assert ) {
 	assert.notOk(strings.IsIPv4(),"false undefined");
 	
 });
+
+QUnit.test( "MatchGmail", function( assert ) {
+	//匹配 成功
+	var matchOk = 0;
+	
+	//匹配 用戶名@主機名
+	var matchSplitLess = 10;	//沒有以 @ 分隔 用戶名 主機名
+	var matchSplitMore = 11;	//出現 多個 @
+
+	//匹配用戶名
+	var USER_MIN_LEN = 6;
+	var USER_MAX_LEN = 30;
+	var matchUserLenLess = 20;	//用戶名太短
+	var matchUserLenMore = 21;	//用戶名太長
+	var matchUserBegin = 22;	//驗證用戶名 開始
+	var matchUserEnd = 23;		//驗證用戶名 結尾
+	var matchUserPointLink = 24;	//多個 . 相連
+
+	//匹配主機名
+	var matchNameError = 30;
+
+
+	var strings = king.strings;
+
+	var str = "king.zuiwuchang@gmail.com"
+	assert.equal(strings.MatchGmail(str),matchOk,"matchOk " + str);
+	str = "zuiwuchang@--kl._.1.com"
+	assert.equal(strings.MatchGmail(str),matchOk,"matchOk " + str);
+
+	str = "zuiwuchang@"
+	assert.equal(strings.MatchGmail(str),matchSplitLess,"matchSplitLess " + str);
+	str = "zuiwuch@ang@"
+	assert.equal(strings.MatchGmail(str),matchSplitMore,"matchSplitMore " + str);
+	str = ".zuiwuch@ang"
+	assert.equal(strings.MatchGmail(str),matchUserBegin,"matchUserBegin " + str);
+	str = "1234567890123456789012345678901@ang"
+	assert.equal(strings.MatchGmail(str),matchUserLenMore,"matchUserLenMore " + str);
+	str = "king@ang"
+	assert.equal(strings.MatchGmail(str),matchUserLenLess,"matchUserLenLess " + str);
+	str = "k.i.n.g@ang"
+	assert.equal(strings.MatchGmail(str),matchUserLenLess,"matchUserLenLess " + str);
+	str = "zuiwuch.@ang"
+	assert.equal(strings.MatchGmail(str),matchUserEnd,"matchUserEnd " + str);
+	str = "zuiwu..ch@ang"
+	assert.equal(strings.MatchGmail(str),matchUserPointLink,"matchUserPointLink " + str);
+
+	str = "zuiwuchang@kl..1.com"
+	assert.equal(strings.MatchGmail(str),matchNameError,"matchNameError " + str);
+	
+	str = "zuiwuchang@.kl.1.com"
+	assert.equal(strings.MatchGmail(str),matchNameError,"matchNameError " + str);
+});
