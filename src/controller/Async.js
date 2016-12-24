@@ -103,8 +103,8 @@ king.controller.NewAsync = king.controller.NewAsync || function(){
 				//執行 流程
 				var obj = funcs[_n];
 				_funcError = obj.OnError;
-				obj.Func(this,channel.Content);
 				++_n;
+				obj.Func(this,channel.Content);
 			}else{
 				//所有流程 執行完成 發送 成功 通知
 				_status = _STATUS_OK;
