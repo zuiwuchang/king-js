@@ -10,9 +10,10 @@
 var king = g.king;
 
 king.strings = king.strings || {};
+var pkg = king.strings;
 
 //將日期 Date 轉化爲指定格式的 字符串
-king.strings.FormatDate = king.strings.FormatDate || function(d,fmt){
+pkg.FormatDate = pkg.FormatDate || function(d,fmt){
 	var o = {
 		"M+": d.getMonth() + 1, //月
 		"d+": d.getDate(), //日
@@ -38,7 +39,7 @@ king.strings.FormatDate = king.strings.FormatDate || function(d,fmt){
 };
 
 //驗證 是否是 ipv4
-king.strings.IsIPv4 = king.strings.IsIPv4 || function(ip){
+pkg.IsIPv4 = pkg.IsIPv4 || function(ip){
 	if(!ip){
 		return false;
 	}
@@ -78,7 +79,7 @@ king.strings.IsIPv4 = king.strings.IsIPv4 || function(ip){
 		不能以 . 開頭 且 . 不能相連
 		由 [a-zA-Z0-9\-_\.]組成
 */
-king.strings.MatchGmail = king.strings.IsEmail || function(str){
+pkg.MatchGMail = pkg.MatchGMail || function(str){
 	//匹配 成功
 	var matchOk = 0;
 	
@@ -153,4 +154,30 @@ king.strings.MatchGmail = king.strings.IsEmail || function(str){
 	return matchHostName(strs[1]);
 };
 
+//將字符串中的 html 保留字 轉義
+pkg.HtmlEncode = pkg.HtmlEncode || function(str){
+	if (!str || str.length == 0){
+		return "";
+	}
+	str = str.replace(/&/g, "&amp;");
+	str = str.replace(/</g, "&lt;");
+	str = str.replace(/>/g, "&gt;");
+	str = str.replace(/ /g, "&nbsp;");
+	str = str.replace(/\'/g, "&#39;");
+	str = str.replace(/\"/g, "&quot;");
+	return str;
+};
+//將 HtmlEncode 解碼
+pkg.HtmlDecode = pkg.HtmlDecode || function(str){
+	if (!str || str.length == 0){
+		return "";
+	}
+	str = str.replace(/&amp;/g, "&");
+	str = str.replace(/&lt;/g, "<");
+	str = str.replace(/&gt;/g, ">");
+	str = str.replace(/&nbsp;/g, " ");
+	str = str.replace(/&#39;/g, "\'");
+	str = str.replace(/&quot;/g, "\"");
+	return str;
+};
 })(this);

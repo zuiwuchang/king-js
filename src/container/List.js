@@ -90,7 +90,7 @@ king.container.NewList = king.container.NewList || function(){
 			var back = _ctx.Back;
 			//empty
 			if(!back){
-				return;
+				return false;
 			}
 
 			//one element
@@ -98,7 +98,7 @@ king.container.NewList = king.container.NewList || function(){
 				_ctx.Size = 0;
 				_ctx.Back = null;
 				_ctx.Front = null;
-				return;
+				return true;
 			}
 
 			//greater than 1
@@ -106,6 +106,7 @@ king.container.NewList = king.container.NewList || function(){
 			var element = back.Prev;
 			element.Next = null;
 			_ctx.Back = element
+			return true;
 		},
 		//彈出頭部元素(如果存在的話)
 		PopFront:function(){

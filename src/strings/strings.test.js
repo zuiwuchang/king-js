@@ -15,7 +15,7 @@ QUnit.test( "IsIPv4", function( assert ) {
 	
 });
 
-QUnit.test( "MatchGmail", function( assert ) {
+QUnit.test( "MatchGMail", function( assert ) {
 	//匹配 成功
 	var matchOk = 0;
 	
@@ -39,30 +39,42 @@ QUnit.test( "MatchGmail", function( assert ) {
 	var strings = king.strings;
 
 	var str = "king.zuiwuchang@gmail.com"
-	assert.equal(strings.MatchGmail(str),matchOk,"matchOk " + str);
+	assert.equal(strings.MatchGMail(str),matchOk,"matchOk " + str);
 	str = "zuiwuchang@--kl._.1.com"
-	assert.equal(strings.MatchGmail(str),matchOk,"matchOk " + str);
+	assert.equal(strings.MatchGMail(str),matchOk,"matchOk " + str);
 
 	str = "zuiwuchang@"
-	assert.equal(strings.MatchGmail(str),matchSplitLess,"matchSplitLess " + str);
+	assert.equal(strings.MatchGMail(str),matchSplitLess,"matchSplitLess " + str);
 	str = "zuiwuch@ang@"
-	assert.equal(strings.MatchGmail(str),matchSplitMore,"matchSplitMore " + str);
+	assert.equal(strings.MatchGMail(str),matchSplitMore,"matchSplitMore " + str);
 	str = ".zuiwuch@ang"
-	assert.equal(strings.MatchGmail(str),matchUserBegin,"matchUserBegin " + str);
+	assert.equal(strings.MatchGMail(str),matchUserBegin,"matchUserBegin " + str);
 	str = "1234567890123456789012345678901@ang"
-	assert.equal(strings.MatchGmail(str),matchUserLenMore,"matchUserLenMore " + str);
+	assert.equal(strings.MatchGMail(str),matchUserLenMore,"matchUserLenMore " + str);
 	str = "king@ang"
-	assert.equal(strings.MatchGmail(str),matchUserLenLess,"matchUserLenLess " + str);
+	assert.equal(strings.MatchGMail(str),matchUserLenLess,"matchUserLenLess " + str);
 	str = "k.i.n.g@ang"
-	assert.equal(strings.MatchGmail(str),matchUserLenLess,"matchUserLenLess " + str);
+	assert.equal(strings.MatchGMail(str),matchUserLenLess,"matchUserLenLess " + str);
 	str = "zuiwuch.@ang"
-	assert.equal(strings.MatchGmail(str),matchUserEnd,"matchUserEnd " + str);
+	assert.equal(strings.MatchGMail(str),matchUserEnd,"matchUserEnd " + str);
 	str = "zuiwu..ch@ang"
-	assert.equal(strings.MatchGmail(str),matchUserPointLink,"matchUserPointLink " + str);
+	assert.equal(strings.MatchGMail(str),matchUserPointLink,"matchUserPointLink " + str);
 
 	str = "zuiwuchang@kl..1.com"
-	assert.equal(strings.MatchGmail(str),matchNameError,"matchNameError " + str);
+	assert.equal(strings.MatchGMail(str),matchNameError,"matchNameError " + str);
 	
 	str = "zuiwuchang@.kl.1.com"
-	assert.equal(strings.MatchGmail(str),matchNameError,"matchNameError " + str);
+	assert.equal(strings.MatchGMail(str),matchNameError,"matchNameError " + str);
+});
+QUnit.test( "crypto html", function( assert ) {
+	var strings = king.strings;
+	assert.equal(strings.HtmlEncode(""),"",'HtmlEncode("")');
+	assert.equal(strings.HtmlDecode(""),"",'HtmlDecode("")');
+
+	var old = "include <iostream>\n\'-\"";
+	var ok = "include&nbsp;&lt;iostream&gt;\n&#39;-&quot;"
+	var en = strings.HtmlEncode(old);
+	assert.equal(en,ok,"HtmlEncode " + old);
+	var dec = strings.HtmlDecode(en);
+	assert.equal(en,ok,"HtmlDecode " + en);
 });

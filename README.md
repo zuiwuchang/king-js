@@ -21,6 +21,4 @@ king@king-XXX-XXX ~ $ echo $CLOSURE_COMPILER
 )
 
 #api文檔
-孤是一個懶惰的人 都沒有api文檔 然 孤會在 api的 實現源碼 中爲 api 標明功能
-
-其次 所有組件 都有一個 組件名-test.js 的單元測試檔案 其中對組件的 所有api都進行了 調用可作參考
+安裝 doxygen 之後 運行 build-docs.sh 生成 api 文檔

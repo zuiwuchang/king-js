@@ -1,9 +1,5 @@
 /*
-	king.browser 
 	包提供了  對browser檢測 封裝函數
-	
-	package	king.browser
-	
 */
 (function(g){
 "use strict";
