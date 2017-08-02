@@ -31,5 +31,5 @@ function Build(){
 	echo "***	build success	***"
 }
 
-AddSource "strings/crypto"
+AddSource "controller/Async2"
 Build
